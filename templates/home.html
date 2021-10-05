@@ -23,6 +23,7 @@
         <option value="10000">100</option>
 
     </select>
+    {% csrf_token %}
 
 
        <!-- Place this where you need payment button -->
@@ -30,6 +31,8 @@
        <!-- Place this where you need payment button -->
        <!-- Paste this code anywhere in you body tag -->
        <script>
+           const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
            var config = {
                // replace the publicKey with yours
                "publicKey": "test_public_key_0f415867f92c4b0591387304e813bc77",
@@ -46,9 +49,11 @@
                "eventHandler": {
                    onSuccess (payload) {
                     $.ajax({ 
-                            method:'GET',
+                            method:'POST',
+                            type:'POST',
                             url: '/',
                             data: payload,
+                            headers: {'X-CSRFToken': csrftoken},
                             contentType: "application/json; charset=utf-8",
                             dataType: "json",
                             success: successFunc,

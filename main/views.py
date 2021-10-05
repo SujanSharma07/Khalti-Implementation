@@ -5,8 +5,9 @@ from django.http import JsonResponse
 
 
 def home(request):
-    try:
-        data = request.GET
+    if request.method == 'POST':
+        data = request.POST
+        print("DATA IS ",data)
         token = data['token']
         amount = data['amount']
    
@@ -25,8 +26,7 @@ def home(request):
 
         else:
             return JsonResponse({'data':amount,'status':"Error"})
-    except:
-        pass
+
     return render(request,'home.html')
 
 
