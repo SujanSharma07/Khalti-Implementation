@@ -9,7 +9,7 @@ def home(request):
         data = request.POST
         token = data['token']
         amount = data['amount']
-   
+        # Intended some change only
         url = "https://khalti.com/api/v2/payment/verify/"
         params = {
         "token": token,
