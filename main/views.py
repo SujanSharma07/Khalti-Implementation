@@ -7,7 +7,6 @@ from django.http import JsonResponse
 def home(request):
     if request.method == 'POST':
         data = request.POST
-        print("DATA IS ",data)
         token = data['token']
         amount = data['amount']
    
